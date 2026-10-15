@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab 20 - Final Bill and Receipt</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Lab 20: Final Bill and Receipt</h1>
+
+  <!-- PART 1: Create a new receipt -->
+  <section class="box no-print">
+    <h2>Generate Receipt</h2>
+    <label>Guest name</label>
+    <input id="guest" value="Juan Dela Cruz">
+    <label>Room</label>
+    <input id="room" value="201">
+    <label>Total bill (₱)</label>
+    <input id="total" type="number" value="9400">
+    <label>Amount paid (₱)</label>
+    <input id="paid" type="number" value="9400">
+    <label>Check-out date</label>
+    <input id="date" type="date" value="2026-09-12">
+    <button onclick="generateReceipt()">Generate Receipt</button>
+  </section>
+
+  <!-- PART 2: Search transactions + previous receipts -->
+  <section class="box no-print">
+    <h2>Previous Receipts</h2>
+    <input id="search" placeholder="Search by receipt no, guest, room or date..." oninput="showReceipts()">
+    <table>
+      <thead><tr><th>Receipt No</th><th>Guest</th><th>Room</th><th>Total</th><th>Status</th><th>Check-out</th><th></th></tr></thead>
+      <tbody id="list"></tbody>
+    </table>
+  </section>
+
+  <!-- PART 3: The receipt that is shown, printed or saved as PDF -->
+  <section class="box" id="receiptBox" hidden>
+    <pre id="receipt"></pre>
+    <div class="no-print">
+      <button onclick="window.print()">Print Receipt</button>
+      <button onclick="window.print()">Generate PDF</button>
+      <p class="hint">For PDF: click the button, then choose "Save as PDF" as the printer.</p>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
