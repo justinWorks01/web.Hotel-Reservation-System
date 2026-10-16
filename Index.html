@@ -9,7 +9,6 @@
 <body>
   <h1>Lab 20: Final Bill and Receipt</h1>
 
-  <!-- PART 1: Create a new receipt -->
   <section class="box no-print">
     <h2>Generate Receipt</h2>
     <label>Guest name</label>
@@ -25,7 +24,6 @@
     <button onclick="generateReceipt()">Generate Receipt</button>
   </section>
 
-  <!-- PART 2: Search transactions + previous receipts -->
   <section class="box no-print">
     <h2>Previous Receipts</h2>
     <input id="search" placeholder="Search by receipt no, guest, room or date..." oninput="showReceipts()">
@@ -35,7 +33,6 @@
     </table>
   </section>
 
-  <!-- PART 3: The receipt that is shown, printed or saved as PDF -->
   <section class="box" id="receiptBox" hidden>
     <pre id="receipt"></pre>
     <div class="no-print">
