@@ -1,24 +1,18 @@
-// ===== LAB 20: FINAL BILL AND RECEIPT =====
-
-// 1. Sample transactions (a real system would read these from the database)
 let receipts = [
   { no: "RCT-001", guest: "Juan Dela Cruz", room: "201", total: 9400, paid: 9400, date: "2026-09-12" },
   { no: "RCT-002", guest: "Maria Santos",   room: "305", total: 7600, paid: 7600, date: "2026-09-14" },
   { no: "RCT-003", guest: "Pedro Reyes",    room: "102", total: 4200, paid: 3000, date: "2026-09-15" }
 ];
 
-// 2. Helper: format a number as pesos, e.g. 9400 -> ₱9,400
 function peso(n) {
   return "₱" + Number(n).toLocaleString();
 }
 
-// 3. Search transactions and show the list of previous receipts
 function showReceipts() {
   const text = document.getElementById("search").value.toLowerCase();
   let rows = "";
 
   for (const r of receipts) {
-    // join the searchable fields into one string and check if it contains the text
     const searchable = (r.no + " " + r.guest + " " + r.room + " " + r.date).toLowerCase();
     if (!searchable.includes(text)) continue;
 
@@ -56,7 +50,6 @@ function viewReceipt(no) {
   document.getElementById("receiptBox").scrollIntoView();
 }
 
-// 5. Create a new receipt from the form
 function generateReceipt() {
   const guest = document.getElementById("guest").value.trim();
   const room = document.getElementById("room").value.trim();
@@ -64,7 +57,7 @@ function generateReceipt() {
   const paid = Number(document.getElementById("paid").value);
   const date = document.getElementById("date").value;
 
-  // simple validation
+ 
   if (!guest || !room || !date || total <= 0 || paid < 0) {
     alert("Please complete all fields with valid values.");
     return;
@@ -81,5 +74,4 @@ function generateReceipt() {
   viewReceipt(no);
 }
 
-// Show the list when the page opens
 showReceipts();
