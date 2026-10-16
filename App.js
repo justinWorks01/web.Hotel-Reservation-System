@@ -5,34 +5,33 @@ let receipts = [
 ];
 
 function peso(n) {
-  return "₱" + Number(n).toLocaleString();
+return "₱" + Number(n).toLocaleString();
 }
 
 function showReceipts() {
-  const text = document.getElementById("search").value.toLowerCase();
-  let rows = "";
+const text = document.getElementById("search").value.toLowerCase();
+let rows = "";
 
-  for (const r of receipts) {
-    const searchable = (r.no + " " + r.guest + " " + r.room + " " + r.date).toLowerCase();
-    if (!searchable.includes(text)) continue;
+for (const r of receipts) {
+const searchable = (r.no + " " + r.guest + " " + r.room + " " + r.date).toLowerCase();
+if (!searchable.includes(text)) continue;
 
-    const balance = r.total - r.paid;
-    const status = balance > 0 ? '<span class="balance">BALANCE</span>' : '<span class="paid">PAID</span>';
-    rows += "<tr>" +
+const balance = r.total - r.paid;
+const status = balance > 0 ? '<span class="balance">BALANCE</span>' : '<span class="paid">PAID</span>';
+rows += "<tr>" +
       "<td>" + r.no + "</td><td>" + r.guest + "</td><td>" + r.room + "</td>" +
       "<td>" + peso(r.total) + "</td><td>" + status + "</td><td>" + r.date + "</td>" +
       '<td><button onclick="viewReceipt(\'' + r.no + '\')">View</button></td></tr>';
   }
 
-  document.getElementById("list").innerHTML = rows || "<tr><td colspan='7'>No transactions found.</td></tr>";
+document.getElementById("list").innerHTML = rows || "<tr><td colspan='7'>No transactions found.</td></tr>";
 }
 
-// 4. Show one receipt in the format required by the lab
 function viewReceipt(no) {
-  const r = receipts.find(x => x.no === no);
-  const balance = r.total - r.paid;
+const r = receipts.find(x => x.no === no);
+const balance = r.total - r.paid;
 
-  document.getElementById("receipt").textContent =
+document.getElementById("receipt").textContent =
     "HOTEL RECEIPT\n" +
     "--------------------------------\n" +
     "Receipt No: " + r.no + "\n" +
@@ -46,29 +45,29 @@ function viewReceipt(no) {
     "--------------------------------\n" +
     "Thank you for staying with us!";
 
-  document.getElementById("receiptBox").hidden = false;
-  document.getElementById("receiptBox").scrollIntoView();
+document.getElementById("receiptBox").hidden = false;
+document.getElementById("receiptBox").scrollIntoView();
 }
 
 function generateReceipt() {
-  const guest = document.getElementById("guest").value.trim();
-  const room = document.getElementById("room").value.trim();
-  const total = Number(document.getElementById("total").value);
-  const paid = Number(document.getElementById("paid").value);
-  const date = document.getElementById("date").value;
+const guest = document.getElementById("guest").value.trim();
+const room = document.getElementById("room").value.trim();
+const total = Number(document.getElementById("total").value);
+const paid = Number(document.getElementById("paid").value);
+const date = document.getElementById("date").value;
 
  
-  if (!guest || !room || !date || total <= 0 || paid < 0) {
+if (!guest || !room || !date || total <= 0 || paid < 0) {
     alert("Please complete all fields with valid values.");
     return;
   }
-  if (paid > total) {
+if (paid > total) {
     alert("Amount paid cannot be more than the total bill.");
-    return;
+return;
   }
 
-  const no = "RCT-" + String(receipts.length + 1).padStart(3, "0");
-  receipts.push({ no: no, guest: guest, room: room, total: total, paid: paid, date: date });
+const no = "RCT-" + String(receipts.length + 1).padStart(3, "0");
+receipts.push({ no: no, guest: guest, room: room, total: total, paid: paid, date: date });
 
   showReceipts();
   viewReceipt(no);
